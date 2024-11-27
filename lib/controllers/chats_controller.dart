@@ -18,7 +18,7 @@ class ChatsController extends GetxController {
   var friendId = Get.arguments[1];
 
   var senderName = Get
-      .find<HomeController>()
+      .put(HomeController())
       .username;
   var currentId = currentUser!.uid;
 

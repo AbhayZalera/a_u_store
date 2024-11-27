@@ -44,7 +44,10 @@ class LoginScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                      onPressed: () {}, child: forgetPass.text.make()),
+                      onPressed: () {
+
+
+                      }, child: forgetPass.text.make()),
                 ),
                 5.heightBox,
                 controller.isloading.value
@@ -84,19 +87,24 @@ class LoginScreen extends StatelessWidget {
                 5.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                      3,
-                      (index) => Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              backgroundColor: lightGrey,
-                              radius: 25,
-                              child: Image.asset(
-                                socialIconList[index],
-                                width: 30,
-                              ),
-                            ),
-                          )),
+                  children:[
+                    IconButton(
+                      onPressed: () async {
+                        controller.isloading(true);
+                        await controller.googleSignInMethod(context: context).then((user) {
+                          if (user != null) {
+                            VxToast.show(context, msg: loggedin);
+                            Get.offAll(() => const Home());
+                          } else {
+                            controller.isloading(false);
+                          }
+                        });
+                      },
+                      icon: Image.asset(icGoogleLogo,
+                        width: 30,
+                      ),
+                    ),
+                  ]
                 ),
               ],
             )

@@ -50,7 +50,7 @@ class ProductController extends GetxController {
       'sellername': sellername,
       'color': color,
       'qty':qty,
-      'vender_id' : vendorID,
+      'vendor_id' : vendorID,
       'tprice': tprice,
       'added_by': currentUser!.uid,
 

@@ -5,6 +5,7 @@ import 'package:a_u_store/views/widgets_common/our_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:share/share.dart';
 
 import '../../consts/consts.dart';
 
@@ -16,7 +17,7 @@ class ItemDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<ProductController>();
+    var controller = Get.put(ProductController());
     return WillPopScope(
       onWillPop: () async {
         controller.resetValues();
@@ -34,7 +35,9 @@ class ItemDetails extends StatelessWidget {
           title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 icon: const Icon(
                   Icons.share,
                 )),
@@ -75,7 +78,8 @@ class ItemDetails extends StatelessWidget {
                           return Image.network(
                             data['p_imgs'][index],
                             width: double.infinity,
-                            fit: BoxFit.cover,
+                            //fit: BoxFit.cover,
+                            fit: BoxFit.contain,
                           );
                         }),
                     10.heightBox,
@@ -133,7 +137,7 @@ class ItemDetails extends StatelessWidget {
                               Icon(Icons.message_rounded, color: darkFontGrey),
                         ).onTap(() {
                           Get.to(() => const ChatScreen(),
-                              arguments: [data['p_seller'], data['vender_id']]);
+                              arguments: [data['p_seller'], data['vendor_id']]);
                         })
                       ],
                     )
@@ -148,41 +152,41 @@ class ItemDetails extends StatelessWidget {
                     Obx(
                       () => Column(
                         children: [
-                          Row(
+                          const Row(
                             children: [
-                              SizedBox(
-                                width: 100,
-                                child:
-                                    "Color:".text.color(textfieldGrey).make(),
-                              ),
-                              Row(
-                                children: List.generate(
-                                  data['p_colors'].length,
-                                  (index) => Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      VxBox()
-                                          .size(40, 40)
-                                          .roundedFull
-                                          .color(Color(data['p_colors'][index])
-                                              .withOpacity(1.0))
-                                          .margin(const EdgeInsets.symmetric(
-                                              horizontal: 6))
-                                          .make()
-                                          .onTap(() {
-                                        controller.changeColorIndex(index);
-                                      }),
-                                      Visibility(
-                                          visible: index ==
-                                              controller.colorIndex.value,
-                                          child: const Icon(
-                                            Icons.done,
-                                            color: Colors.white,
-                                          ))
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              // SizedBox(
+                              //   width: 100,
+                              //   child:
+                              //       "Color:".text.color(textfieldGrey).make(),
+                              // ),
+                              // Row(
+                              //   children: List.generate(
+                              //     data['p_colors'].length,
+                              //     (index) => Stack(
+                              //       alignment: Alignment.center,
+                              //       children: [
+                              //         VxBox()
+                              //             .size(40, 40)
+                              //             .roundedFull
+                              //             .color(Color(data['p_colors'][index])
+                              //                 .withOpacity(1.0))
+                              //             .margin(const EdgeInsets.symmetric(
+                              //                 horizontal: 6))
+                              //             .make()
+                              //             .onTap(() {
+                              //           controller.changeColorIndex(index);
+                              //         }),
+                              //         Visibility(
+                              //             visible: index ==
+                              //                 controller.colorIndex.value,
+                              //             child: const Icon(
+                              //               Icons.done,
+                              //               color: Colors.white,
+                              //             ))
+                              //       ],
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ).box.padding(const EdgeInsets.all(8)).make(),
 
@@ -214,13 +218,13 @@ class ItemDetails extends StatelessWidget {
                                     IconButton(
                                         onPressed: () {
                                           controller.increaseQuantity(
-                                              int.parse(data['p_quanitity']));
+                                              int.parse(data['p_quantity']));
                                           controller.calculateTotalPrice(
                                               int.parse(data['p_price']));
                                         },
                                         icon: const Icon(Icons.add)),
                                     10.widthBox,
-                                    "(${data['p_quanitity']} available)"
+                                    "(${data['p_quantity']} available)"
                                         .text
                                         .color(textfieldGrey)
                                         .make(),
@@ -260,21 +264,21 @@ class ItemDetails extends StatelessWidget {
                     10.heightBox,
                     "${data['p_desc']}".text.color(darkFontGrey).make(),
                     //Buttons Sections
-                    10.heightBox,
-                    ListView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      children: List.generate(
-                          itemDetailsButtonsList.length,
-                          (index) => ListTile(
-                                title: itemDetailsButtonsList[index]
-                                    .text
-                                    .fontFamily(semibold)
-                                    .color(darkFontGrey)
-                                    .make(),
-                                trailing: const Icon(Icons.arrow_forward),
-                              )),
-                    ),
+                    // 10.heightBox,
+                    // ListView(
+                    //   physics: const NeverScrollableScrollPhysics(),
+                    //   shrinkWrap: true,
+                    //   children: List.generate(
+                    //       itemDetailsButtonsList.length,
+                    //       (index) => ListTile(
+                    //             title: itemDetailsButtonsList[index]
+                    //                 .text
+                    //                 .fontFamily(semibold)
+                    //                 .color(darkFontGrey)
+                    //                 .make(),
+                    //             trailing: const Icon(Icons.arrow_forward),
+                    //           )),
+                    // ),
                     20.heightBox,
 
                     //Product mayLike Section
@@ -295,18 +299,18 @@ class ItemDetails extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Image.asset(
-                                imgP1,
+                                imgFc1,
                                 width: 150,
                                 fit: BoxFit.cover,
                               ),
                               10.heightBox,
-                              "Laptop 4GB/64GB"
+                              "Shoes"
                                   .text
                                   .fontFamily(semibold)
                                   .color(darkFontGrey)
                                   .make(),
                               10.heightBox,
-                              "\$600"
+                              "1,500.00"
                                   .text
                                   .color(redColor)
                                   .fontFamily(bold)
@@ -330,19 +334,24 @@ class ItemDetails extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               height: 60,
-              child: ourButton(
+               child: ourButton(
                   color: redColor,
                   onPress: () {
-                    controller.addToCart(
-                        color: data['p_colors'][controller.colorIndex.value],
-                        context: context,
-                        vendorID: data['vender_id'],
-                        img: data['p_imgs'][0],
-                        qty: controller.quantity.value,
-                        sellername: data['p_seller'],
-                        title: data['p_name'],
-                        tprice: controller.totalPrice.value);
-                    VxToast.show(context, msg: "Added to cart");
+                    if(controller.quantity.value > 0){
+                      controller.addToCart(
+                          //color: data['p_colors'][controller.colorIndex.value],
+                          context: context,
+                          vendorID: data['vendor_id'],
+                          img: data['p_imgs'][0],
+                          qty: controller.quantity.value,
+                          sellername: data['p_seller'],
+                          title: data['p_name'],
+                          tprice: controller.totalPrice.value);
+                      VxToast.show(context, msg: "Added to cart");
+                    }
+                    else{
+                      VxToast.show(context, msg: "Minimum 1 Product is Required");
+                    }
                   },
                   textColor: whiteColor,
                   title: "Add to cart"),

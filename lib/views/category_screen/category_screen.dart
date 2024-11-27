@@ -12,6 +12,7 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(ProductController());
+    //var controller = Get.find<ProductController>();
     return bgWidget(
         child: Scaffold(
           appBar: AppBar(
@@ -37,7 +38,8 @@ class CategoryScreen extends StatelessWidget {
                         categoryImages[index],
                         height: 115,
                         width: 125,
-                        fit: BoxFit.cover,
+                        //fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                       10.heightBox,
                       categoriesList[index]

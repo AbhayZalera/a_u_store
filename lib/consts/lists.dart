@@ -8,11 +8,29 @@ const slidersList = [imgSlider1, imgSlider2, imgSlider3, imgSlider4];
 //Second Slider List
 const secondSlidersList = [imgSs1, imgSs2, imgSs3, imgSs4];
 
-const featuredImages1 = [imgS1, imgS2, imgS3];
-const featuredImages2 = [imgS4, imgS5, imgS6];
+const featuredImages1 = [
+  imgFc1,
+  imgFc2,
+  imgFc3,
+];
+const featuredImages2 = [
+  imgFc4,
+  imgFc5,
+  imgFc6,
+];
+const featuredImages3 = [imgFc7, imgFc8, imgFc9];
 
-const featuredTitles1 = [womenDress, girlsDress, girlsWatches];
-const featuredTitles2 = [boysGlasses, mobilePhone, tShirts];
+const featuredTitles1 = [
+  menshoes,
+  womenshoes,
+  kidshoes,
+];
+const featuredTitles2 = [
+  mensandal,
+  womensandal,
+  kidsandal,
+];
+const featuredTitles3 = [menslippers, womenslippers, kidlippers];
 
 const categoriesList = [
   menshoes,
@@ -48,5 +66,5 @@ const itemDetailsButtonsList = [
 const profileButtonsList = [orders, wishlist, message];
 const profileButtonsIcon = [icOrder, icOrder, icMessages];
 
-const paymentMethodImg = [imgPaypal, imgStripe,imgCod];
-const paymentMethods = [paypal,stripe,cod];
+const paymentMethodImg = [imgPaypal, imgStripe, imgCod];
+const paymentMethods = [paypal, stripe, cod];
